@@ -30,7 +30,7 @@ router.route('/add').post(auth, (req, res) => {
   .catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.route('/:id').get(auth, (req, res) => {
+router.route('/:id').get((req, res) => {
   Guide.findById(req.params.id)
     .then(guide => res.json(guide))
     .catch(err => res.status(400).json('Error: ' + err));
