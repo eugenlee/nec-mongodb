@@ -8,7 +8,7 @@ router.route('/').get((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.route('/add', auth).post((req, res) => {
+router.route('/add').post(auth, (req, res) => {
   const continent = req.body.continent;
   const image = req.body.image;
   const city = req.body.city;
@@ -36,13 +36,13 @@ router.route('/:id').get((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.route('/:id', auth).delete((req, res) => {
+router.route('/:id').delete(auth, (req, res) => {
   Travel.findByIdAndDelete(req.params.id)
     .then(() => res.json('Travel Deleted.'))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.route('/update/:id', auth).post((req, res) => {
+router.route('/update/:id').post(auth, (req, res) => {
   Travel.findById(req.params.id)
     .then(travel => {
       travel.continent = req.body.continent;

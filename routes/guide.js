@@ -8,7 +8,7 @@ router.route('/').get((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.route('/add', auth).post((req, res) => {
+router.route('/add').post(auth, (req, res) => {
   const imgLink = req.body.imgLink;
   const firstText = req.body.firstText;
   const articleLink = req.body.articleLink;
@@ -30,19 +30,19 @@ router.route('/add', auth).post((req, res) => {
   .catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.route('/:id').get((req, res) => {
+router.route('/:id').get(auth, (req, res) => {
   Guide.findById(req.params.id)
     .then(guide => res.json(guide))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.route('/:id', auth).delete((req, res) => {
+router.route('/:id').delete(auth, (req, res) => {
   Guide.findByIdAndDelete(req.params.id)
     .then(() => res.json('Guide Deleted.'))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.route('/update/:id', auth).post((req, res) => {
+router.route('/update/:id').post(auth, (req, res) => {
   Guide.findById(req.params.id)
     .then(guide => {
       guide.imgLink = req.body.imgLink;
