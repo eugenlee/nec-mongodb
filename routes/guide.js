@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const auth = require('../auth')
 let Guide = require('../models/guide.model');
 
 router.route('/').get((req, res) => {
@@ -7,7 +8,7 @@ router.route('/').get((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.route('/add').post((req, res) => {
+router.route('/add', auth).post((req, res) => {
   const imgLink = req.body.imgLink;
   const firstText = req.body.firstText;
   const articleLink = req.body.articleLink;
@@ -35,13 +36,13 @@ router.route('/:id').get((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.route('/:id').delete((req, res) => {
+router.route('/:id', auth).delete((req, res) => {
   Guide.findByIdAndDelete(req.params.id)
     .then(() => res.json('Guide Deleted.'))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.route('/update/:id').post((req, res) => {
+router.route('/update/:id', auth).post((req, res) => {
   Guide.findById(req.params.id)
     .then(guide => {
       guide.imgLink = req.body.imgLink;
