@@ -14,7 +14,6 @@ router.route('/add').post(auth, (req, res) => {
   const articleLink = req.body.articleLink;
   const secondText = req.body.secondText;
   const spanBody = req.body.spanBody;
-  const mainBody = req.body.mainBody;
 
   const newGuide = new Guide({
     imgLink,
@@ -22,7 +21,6 @@ router.route('/add').post(auth, (req, res) => {
     articleLink,
     secondText,
     spanBody,
-    mainBody
   });
 
   newGuide.save()
@@ -50,7 +48,6 @@ router.route('/update/:id').post(auth, (req, res) => {
       guide.articleLink = req.body.articleLink;
       guide.secondText = req.body.secondText;
       guide.spanBody = req.body.spanBody;
-      guide.mainBody = req.body.mainBody;
 
       guide.save()
         .then(() => res.json('Guide Updated!'))

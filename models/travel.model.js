@@ -8,7 +8,6 @@ const travelSchema = new Schema({
   city: { type: String, required: true },
   country: { type: String, required: true },
   link: { type: String, required: true },
-  mainBody: { type: String, required: true }
 }, {
   timestamps: true,
 });

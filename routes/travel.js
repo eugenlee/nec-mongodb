@@ -14,7 +14,6 @@ router.route('/add').post(auth, (req, res) => {
   const city = req.body.city;
   const country = req.body.country;
   const link = req.body.link;
-  const mainBody = req.body.mainBody;
 
   const newTravel = new Travel({
     continent,
@@ -22,7 +21,6 @@ router.route('/add').post(auth, (req, res) => {
     city,
     country,
     link,
-    mainBody
   });
 
   newTravel.save()
@@ -50,7 +48,6 @@ router.route('/update/:id').post(auth, (req, res) => {
       travel.city = req.body.city;
       travel.country = req.body.country;
       travel.link = req.body.link;
-      travel.mainBody = req.body.mainBody;
 
       travel.save()
         .then(() => res.json('Travel Updated!'))
