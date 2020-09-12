@@ -28,20 +28,20 @@ router.route('/add').post(auth, (req, res) => {
   .catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.route('/:id').get((req, res) => {
-  Travel.findById(req.params.id)
+router.route('/:_id').get((req, res) => {
+  Travel.findById(req.params._id)
     .then(travel => res.json(travel))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.route('/:id').delete(auth, (req, res) => {
-  Travel.findByIdAndDelete(req.params.id)
+router.route('/:_id').delete(auth, (req, res) => {
+  Travel.findByIdAndDelete(req.params._id)
     .then(() => res.json('Travel Deleted.'))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.route('/update/:id').post(auth, (req, res) => {
-  Travel.findById(req.params.id)
+router.route('/update/:_id').post(auth, (req, res) => {
+  Travel.findById(req.params._id)
     .then(travel => {
       travel.continent = req.body.continent;
       travel.image = req.body.image;
