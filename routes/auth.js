@@ -40,4 +40,10 @@ router.route('/').post((req, res) => {
     })
 });
 
+router.route('/user').get(auth, (req, res) => {
+    User.findById(req.user.id)
+    .select('-password')
+    .then(user => res.json(user));
+});
+
 module.exports = router;
