@@ -22,14 +22,12 @@ const travelsRouter = require('./routes/travel');
 const guidesRouter = require('./routes/guide');
 const usersRouter = require('./routes/user');
 const authRouter = require('./routes/auth');
-const signupRouter = require('./routes/signup');
 
 
 app.use('/travels', travelsRouter);
 app.use('/guides', guidesRouter);
 app.use('/users', usersRouter);
 app.use('/auth', authRouter);
-app.use('/signup', signupRouter);
 
 
 app.listen(port, () => {
